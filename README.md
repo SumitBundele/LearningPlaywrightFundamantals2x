@@ -48,7 +48,16 @@ npm run codegen
 The `tests/` directory is organized into the following topic folders:
 
 1. **01_Basics** – Playwright basics and setup
+   - `229_Basic_Test.spec.ts` – Basic title verification test
+   - `230_Test_Annotation.spec.ts` – Test annotations (`skip`, `only`, `fail`, `slow`, conditional)
 2. **02_first_tests** – Writing your first tests
+   - `231_First_running_Tc_Verify.spec.ts` – First running test case verifying title and logo
+   - `232_Browser_context_Page.spec.ts` – Browser → Context → Page hierarchy demo
+   - `233_BCP_ex02.spec.ts` – Multi-user test with separate browser contexts
+   - `234_BCP_Multiple_pages.spec.ts` – Multiple tabs inside a single context
+   - `235_Test_PW.spec.ts` – Fixture-based tests with automatic browser/context/page handling
+   - `236_BCP_TEST_Pw.spec.ts` – Multi-user interaction using the `browser` fixture
+   - `237_BCP_TEST_Options.spec.ts` – Browser context with custom options (viewport, locale, timezone, geolocation)
 3. **03_Locators_Commands** – Locators and commands
 4. **04_Session_Storage** – Session and local storage handling
 5. **05_Allure_Reporting** – Allure test reporting integration
@@ -78,7 +87,16 @@ The `tests/` directory is organized into the following topic folders:
 .
 ├── tests/
 │   ├── 01_Basics/                        # Playwright basics
+│   │   ├── 229_Basic_Test.spec.ts
+│   │   └── 230_Test_Annotation.spec.ts
 │   ├── 02_first_tests/                   # First tests
+│   │   ├── 231_First_running_Tc_Verify.spec.ts
+│   │   ├── 232_Browser_context_Page.spec.ts
+│   │   ├── 233_BCP_ex02.spec.ts
+│   │   ├── 234_BCP_Multiple_pages.spec.ts
+│   │   ├── 235_Test_PW.spec.ts
+│   │   ├── 236_BCP_TEST_Pw.spec.ts
+│   │   └── 237_BCP_TEST_Options.spec.ts
 │   ├── 03_Locators_Commands/             # Locators and commands
 │   ├── 04_Session_Storage/               # Session storage
 │   ├── 05_Allure_Reporting/              # Allure reporting
@@ -112,10 +130,14 @@ The `tests/` directory is organized into the following topic folders:
 
 The `playwright.config.ts` file includes configurations for:
 - **Test directory:** `./tests`
-- **Browsers:** Chromium, Firefox, WebKit
-- **Mobile viewports:** Pixel 5, iPhone 12
-- **Branded browsers:** Microsoft Edge, Google Chrome
-- **Artifacts:** Screenshots, videos, and traces captured on failure
+- **Browser:** Desktop Chrome (other browsers/projects temporarily disabled)
+- **Headless mode:** `false` (browser window visible during tests)
+- **Viewport:** `1920x1080`
+- **Artifacts:**
+  - **Trace:** `on` (always collected)
+  - **Screenshot:** `on` (always captured)
+  - **Video:** `on` (always recorded)
+- *(Mobile viewports and branded browsers are commented out and can be re-enabled as needed)*
 
 ## Useful Links
 
