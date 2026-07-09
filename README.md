@@ -81,6 +81,44 @@ The `tests/` directory is organized into the following topic folders:
 23. **23_Advance_Framework** – Advanced framework topics
 24. **Projects** – Practice projects
 
+## Key API Reference
+
+### `page.goto()`
+
+Navigates to a URL and waits for the page to load.
+
+| Argument | Type | Description | Example |
+|---|---|---|---|
+| **url** | `string` | The URL to navigate to | `await page.goto('https://example.com')` |
+| **options** | `object` | Optional settings (see below) | `await page.goto(url, { waitUntil: 'networkidle' })` |
+
+#### Options
+
+| Option | Type | Default | Description | Example |
+|---|---|---|---|---|
+| **waitUntil** | `string` | `load` | When to consider navigation done | `await page.goto(url, { waitUntil: 'networkidle' })` |
+| **timeout** | `number` | `30000` | Max time to wait in milliseconds | `await page.goto(url, { timeout: 10000 })` |
+| **referer** | `string` | - | HTTP referer header value | `await page.goto(url, { referer: 'https://google.com' })` |
+
+#### waitUntil Values
+
+| Value | Meaning |
+|---|---|
+| `load` | Wait for `load` event (default) |
+| `domcontentloaded` | Wait for `DOMContentLoaded` |
+| `networkidle` | Wait until no network connections for 500ms |
+| `commit` | Wait until navigation response is received |
+
+#### Full Example
+
+```typescript
+await page.goto('https://example.com/login', {
+  waitUntil: 'networkidle',
+  timeout: 15000,
+  referer: 'https://example.com'
+});
+```
+
 ## Project Structure
 
 ```
