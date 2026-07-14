@@ -1,0 +1,17 @@
+import { test, expect } from '@playwright/test';
+
+test('Verify VWO signr Up has an error with incorrect email id', async ({ page }) => {
+
+    await page.goto("https://vwo.com/free-trial/");
+    let inputbox = page.locator("#page-v1-step1-email");
+    await inputbox.fill("abcde");
+
+    //or  use await page.locator("page-v1-step1-email").fill("abcde");
+    await page.locator("#page-free-trial-step1-cu-gdpr-consent-checkbox").click();
+    await page.locator("//button[@data-qa='page-su-submit']").first().click();
+
+
+    let error_msg = await page.locator("//div[contains(@class,'invalid-reason')]").first().textContent();
+    expect(error_msg).toContain("The email address you entered is incorrect.");
+
+});

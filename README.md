@@ -59,6 +59,15 @@ The `tests/` directory is organized into the following topic folders:
    - `236_BCP_TEST_Pw.spec.ts` – Multi-user interaction using the `browser` fixture
    - `237_BCP_TEST_Options.spec.ts` – Browser context with custom options (viewport, locale, timezone, geolocation)
 3. **03_Locators_Commands** – Locators and commands
+   - `238_Locator_commands.spec.ts` – Locator command basics
+   - `239_Project_VWO_login.spec.ts` – VWO login project using locators
+   - `240_xpaths.spec.ts` – XPath locator strategies
+   - `241_Project3_signup_Vwo.spec.ts` – VWO signup project
+   - `242_Project3_SignupVWO_PW_Locators.spec.ts` – VWO signup with Playwright locators
+   - `243_Playwright_Commands.spec.ts` – Common Playwright commands
+   - `244_Referrer.spec.ts` – Referrer header handling
+   - `245_getByRole.spec.ts` – `getByRole` locator usage
+   - `246_Press_Sequentially.spec.ts` – Sequential key press actions
 4. **04_Session_Storage** – Session and local storage handling
 5. **05_Allure_Reporting** – Allure test reporting integration
 6. **06_Multiple_Element_** – Working with multiple elements
@@ -119,6 +128,61 @@ await page.goto('https://example.com/login', {
 });
 ```
 
+### `page.getByRole()`
+
+Locates elements by their ARIA role, ARIA attributes, and accessible name.
+
+| Argument | Type | Description | Example |
+|---|---|---|---|
+| **role** | `string` | ARIA role of the element | `page.getByRole('button')` |
+| **options** | `object` | Optional settings (see below) | `page.getByRole('button', { name: 'Submit' })` |
+
+#### Options
+
+| Option | Type | Default | Description | Example |
+|---|---|---|---|---|
+| **name** | `string` or `RegExp` | - | Accessible name (screen reader text) | `{ name: 'Submit' }` |
+| **exact** | `boolean` | `false` | Match `name` exactly (case-sensitive, whole string) | `{ exact: true }` |
+| **checked** | `boolean` | - | Whether checkbox/radio is checked | `{ checked: true }` |
+| **disabled** | `boolean` | - | Whether the element is disabled | `{ disabled: false }` |
+| **expanded** | `boolean` | - | Whether the element is expanded (`aria-expanded`) | `{ expanded: true }` |
+| **pressed** | `boolean` | - | Whether button is pressed (`aria-pressed`) | `{ pressed: true }` |
+| **selected** | `boolean` | - | Whether element is selected (`aria-selected`) | `{ selected: true }` |
+| **level** | `number` | - | Heading level (`1` to `6`) when role is `heading` | `{ level: 1 }` |
+| **includeHidden** | `boolean` | `false` | Include elements not visible or not in accessibility tree | `{ includeHidden: true }` |
+
+#### Common ARIA Roles
+
+`alert`, `alertdialog`, `application`, `article`, `banner`, `blockquote`, `button`, `caption`, `cell`, `checkbox`, `code`, `columnheader`, `combobox`, `complementary`, `contentinfo`, `definition`, `deletion`, `dialog`, `directory`, `document`, `emphasis`, `feed`, `figure`, `form`, `generic`, `grid`, `gridcell`, `group`, `heading`, `img`, `insertion`, `link`, `list`, `listbox`, `listitem`, `log`, `main`, `marquee`, `math`, `meter`, `menu`, `menubar`, `menuitem`, `menuitemcheckbox`, `menuitemradio`, `navigation`, `none`, `note`, `option`, `paragraph`, `presentation`, `progressbar`, `radio`, `radiogroup`, `region`, `row`, `rowgroup`, `rowheader`, `scrollbar`, `search`, `searchbox`, `separator`, `slider`, `spinbutton`, `status`, `strong`, `subscript`, `superscript`, `switch`, `tab`, `table`, `tablist`, `tabpanel`, `term`, `textbox`, `time`, `timer`, `toolbar`, `tooltip`, `tree`, `treeitem`
+
+#### Examples
+
+```typescript
+// Basic usage
+page.getByRole('button', { name: 'Submit' })
+
+// Exact match
+page.getByRole('heading', { name: 'Welcome', exact: true })
+
+// With heading level
+page.getByRole('heading', { level: 1 })
+
+// With state filters
+page.getByRole('checkbox', { checked: true })
+page.getByRole('button', { pressed: true })
+page.getByRole('tab', { selected: true })
+page.getByRole('button', { expanded: false })
+
+// With disabled state
+page.getByRole('button', { name: 'Submit', disabled: false })
+
+// Regex for name
+page.getByRole('link', { name: /Download PDF/i })
+
+// Include hidden elements
+page.getByRole('button', { name: 'Hidden Button', includeHidden: true })
+```
+
 ## Project Structure
 
 ```
@@ -136,6 +200,15 @@ await page.goto('https://example.com/login', {
 │   │   ├── 236_BCP_TEST_Pw.spec.ts
 │   │   └── 237_BCP_TEST_Options.spec.ts
 │   ├── 03_Locators_Commands/             # Locators and commands
+│   │   ├── 238_Locator_commands.spec.ts
+│   │   ├── 239_Project_VWO_login.spec.ts
+│   │   ├── 240_xpaths.spec.ts
+│   │   ├── 241_Project3_signup_Vwo.spec.ts
+│   │   ├── 242_Project3_SignupVWO_PW_Locators.spec.ts
+│   │   ├── 243_Playwright_Commands.spec.ts
+│   │   ├── 244_Referrer.spec.ts
+│   │   ├── 245_getByRole.spec.ts
+│   │   └── 246_Press_Sequentially.spec.ts
 │   ├── 04_Session_Storage/               # Session storage
 │   ├── 05_Allure_Reporting/              # Allure reporting
 │   ├── 06_Multiple_Element_/             # Multiple elements
