@@ -18,3 +18,8 @@ npm-debug.log*
 # OS generated files
 .DS_Store
 Thumbs.db
+
+# Session / auth state files (may contain sensitive cookies/tokens)
+*-session.json
+*-state.json
+auth.json

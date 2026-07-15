@@ -69,6 +69,7 @@ The `tests/` directory is organized into the following topic folders:
    - `245_getByRole.spec.ts` – `getByRole` locator usage
    - `246_Press_Sequentially.spec.ts` – Sequential key press actions
 4. **04_Session_Storage** – Session and local storage handling
+   - `247_SessionStorage.spec.ts` – Save and reuse session storage (serial tests: login → load dashboard)
 5. **05_Allure_Reporting** – Allure test reporting integration
 6. **06_Multiple_Element_** – Working with multiple elements
 7. **07_WebTables** – Handling web tables
@@ -210,6 +211,7 @@ page.getByRole('button', { name: 'Hidden Button', includeHidden: true })
 │   │   ├── 245_getByRole.spec.ts
 │   │   └── 246_Press_Sequentially.spec.ts
 │   ├── 04_Session_Storage/               # Session storage
+│   │   └── 247_SessionStorage.spec.ts
 │   ├── 05_Allure_Reporting/              # Allure reporting
 │   ├── 06_Multiple_Element_/             # Multiple elements
 │   ├── 07_WebTables/                     # Web tables
