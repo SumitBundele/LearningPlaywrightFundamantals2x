@@ -36,11 +36,14 @@ npm run test:ui
 # Run tests in debug mode
 npm run test:debug
 
-# Show HTML report
+# Show Playwright HTML report
 npm run show-report
 
 # Generate code with Playwright codegen
 npm run codegen
+
+# View Allure report
+npx allure serve allure-results
 ```
 
 ## Topics Covered
@@ -70,7 +73,10 @@ The `tests/` directory is organized into the following topic folders:
    - `246_Press_Sequentially.spec.ts` – Sequential key press actions
 4. **04_Session_Storage** – Session and local storage handling
    - `247_SessionStorage.spec.ts` – Save and reuse session storage (serial tests: login → load dashboard)
+   - `248_TestVWODashboard.spec.ts` – Direct dashboard/settings access using saved session (no login required). Uses `test.step()` for structured VWO steps visible in Allure and TTA reports
 5. **05_Allure_Reporting** – Allure test reporting integration
+   - Allure Playwright reporter configured in `playwright.config.ts`
+   - Attachments: screenshots, videos, and traces visible in Allure reports
 6. **06_Multiple_Element_** – Working with multiple elements
 7. **07_WebTables** – Handling web tables
 8. **08_Web_Select_Frames_Iframe** – Select elements and iframe basics
@@ -211,7 +217,8 @@ page.getByRole('button', { name: 'Hidden Button', includeHidden: true })
 │   │   ├── 245_getByRole.spec.ts
 │   │   └── 246_Press_Sequentially.spec.ts
 │   ├── 04_Session_Storage/               # Session storage
-│   │   └── 247_SessionStorage.spec.ts
+│   │   ├── 247_SessionStorage.spec.ts
+│   │   └── 248_TestVWODashboard.spec.ts
 │   ├── 05_Allure_Reporting/              # Allure reporting
 │   ├── 06_Multiple_Element_/             # Multiple elements
 │   ├── 07_WebTables/                     # Web tables
@@ -233,11 +240,36 @@ page.getByRole('button', { name: 'Hidden Button', includeHidden: true })
 │   ├── 23_Advance_Framework/             # Advanced framework
 │   ├── Projects/                         # Projects
 │   └── example.spec.ts                   # Sample Playwright tests
+├── utils/
+│   └── CustomReporter.ts                  # Custom TTA HTML reporter with live console + report generation
 ├── playwright.config.ts                  # Playwright configuration
 ├── package.json                          # Project dependencies and scripts
 ├── package-lock.json                     # Locked dependency versions
 └── .gitignore                            # Files ignored by Git
 ```
+
+## Reporters
+
+This project uses **three reporters** simultaneously:
+
+1. **Line Reporter** – Terminal output with progress indicators
+2. **Allure Playwright** – Rich HTML test reports with steps, attachments, and history
+3. **Custom TTA Reporter** (`utils/CustomReporter.ts`) – Real-time HTML report with:
+   - Live console step tracking (⏳/✅/❌)
+   - Screenshot, video, and trace galleries per test
+   - Expandable test detail panels with step-level logs
+   - Pass/fail statistics dashboard
+   - Report history page
+
+### Viewing Reports
+
+| Report Type | Command | Notes |
+|---|---|---|
+| **Allure** | `npx allure serve allure-results` | Opens in browser; shows screenshots, videos, steps |
+| **TTA HTML** | Open `tta-report/index.html` in browser | Use VS Code **Live Server** extension for best experience |
+| **Playwright** | `npm run show-report` | Built-in Playwright HTML report |
+
+> **Tip:** Install the [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.liveserver) VS Code extension, then right-click `tta-report/index.html` → **Open with Live Server** to view the TTA report with working videos.
 
 ## Configuration
 
@@ -246,6 +278,7 @@ The `playwright.config.ts` file includes configurations for:
 - **Browser:** Desktop Chrome (other browsers/projects temporarily disabled)
 - **Headless mode:** `false` (browser window visible during tests)
 - **Viewport:** `1920x1080`
+- **Reporters:** Line + Allure + Custom TTA
 - **Artifacts:**
   - **Trace:** `on` (always collected)
   - **Screenshot:** `on` (always captured)

@@ -20,7 +20,11 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
 
   /* Reporter to use */
-  reporter: 'html',
+  reporter: [
+    ["line"],
+    ["allure-playwright"],
+    ["./utils/CustomReporter.ts"],
+  ],
 
   /* Shared settings for all the projects below */
   use: {
