@@ -78,7 +78,12 @@ The `tests/` directory is organized into the following topic folders:
    - Allure Playwright reporter configured in `playwright.config.ts`
    - Attachments: screenshots, videos, and traces visible in Allure reports
 6. **06_Multiple_Element_** – Working with multiple elements
+   - `250_Multiple_elemnts.spec.ts` – Handle multiple elements with `allInnerTexts()`, looping, and `all()` to get element handles and attributes
+   - `251_multiple_element_ex2.spec.ts` – Filter and click a specific element using `getByTestId()`
 7. **07_WebTables** – Handling web tables
+   - `252_webTables.spec.ts` – Extract a single value from a web table using dynamic XPath loops
+   - `252_Webtable02.spec.ts` – Iterate rows/columns with dynamic XPath to find data (Helen Bennett example)
+   - `253_Webtable_dynamic.spec.ts` – Structured row extraction using `nth()` and `allInnerTexts()`
 8. **08_Web_Select_Frames_Iframe** – Select elements and iframe basics
 9. **09_Frame_Iframe** – Deep dive into frames and iframes
 10. **10_Keyboard_Hover_Drag_Drop** – Keyboard actions, hover, drag & drop
@@ -221,7 +226,12 @@ page.getByRole('button', { name: 'Hidden Button', includeHidden: true })
 │   │   └── 248_TestVWODashboard.spec.ts
 │   ├── 05_Allure_Reporting/              # Allure reporting
 │   ├── 06_Multiple_Element_/             # Multiple elements
+│   │   ├── 250_Multiple_elemnts.spec.ts
+│   │   └── 251_multiple_element_ex2.spec.ts
 │   ├── 07_WebTables/                     # Web tables
+│   │   ├── 252_webTables.spec.ts
+│   │   ├── 252_Webtable02.spec.ts
+│   │   └── 253_Webtable_dynamic.spec.ts
 │   ├── 08_Web_Select_Frames_Iframe/      # Select & iframes
 │   ├── 09_Frame_Iframe/                  # Frames & iframes
 │   ├── 10_Keyboard_Hover_Drag_Drop/      # Keyboard, hover, drag-drop
