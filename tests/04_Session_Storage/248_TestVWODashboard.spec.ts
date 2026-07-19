@@ -1,4 +1,4 @@
-import { test, expect } from "playwright/test";
+import { test, expect } from "@playwright/test";
 import * as fs from "fs";
 //load Save session alreayd logged in
 
@@ -6,7 +6,7 @@ test.use({
     storageState: "./user-session.json"
 });//this function will be automatically be calles by the page fixtures
 
-test.afterEach(async ({}, testInfo) => {
+test.afterEach(async ({ }, testInfo) => {
     const screenshotPath = testInfo.outputPath("test-finished-1.png");
     const failedScreenshotPath = testInfo.outputPath("test-failed-1.png");
     const videoPath = testInfo.outputPath("video.webm");
