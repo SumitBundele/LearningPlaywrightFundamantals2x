@@ -84,6 +84,11 @@ The `tests/` directory is organized into the following topic folders:
    - `252_webTables.spec.ts` – Extract a single value from a web table using dynamic XPath loops
    - `252_Webtable02.spec.ts` – Iterate rows/columns with dynamic XPath to find data (Helen Bennett example)
    - `253_Webtable_dynamic.spec.ts` – Structured row extraction using `nth()` and `allInnerTexts()`
+   - `254_Filters_pageLocator.spec.ts` – Filter page locators and assertions on web table data
+   - `255_Webtable_Xpath.spec.ts` – XPath strategies for locating web table elements
+   - `256_Webtable_While_loop.spec.ts` – Iterate through web table pages using a `while` loop
+   - `257_Webtable_forLoop_Pagination.spec.ts` – Pagination handling with `for` loop and collect emails across pages
+   - `258_Webtable_pagination_function.spec.ts` – Reusable `findRowByName()` helper for paginated table search
 8. **08_Web_Select_Frames_Iframe** – Select elements and iframe basics
 9. **09_Frame_Iframe** – Deep dive into frames and iframes
 10. **10_Keyboard_Hover_Drag_Drop** – Keyboard actions, hover, drag & drop
@@ -231,7 +236,12 @@ page.getByRole('button', { name: 'Hidden Button', includeHidden: true })
 │   ├── 07_WebTables/                     # Web tables
 │   │   ├── 252_webTables.spec.ts
 │   │   ├── 252_Webtable02.spec.ts
-│   │   └── 253_Webtable_dynamic.spec.ts
+│   │   ├── 253_Webtable_dynamic.spec.ts
+│   │   ├── 254_Filters_pageLocator.spec.ts
+│   │   ├── 255_Webtable_Xpath.spec.ts
+│   │   ├── 256_Webtable_While_loop.spec.ts
+│   │   ├── 257_Webtable_forLoop_Pagination.spec.ts
+│   │   └── 258_Webtable_pagination_function.spec.ts
 │   ├── 08_Web_Select_Frames_Iframe/      # Select & iframes
 │   ├── 09_Frame_Iframe/                  # Frames & iframes
 │   ├── 10_Keyboard_Hover_Drag_Drop/      # Keyboard, hover, drag-drop
