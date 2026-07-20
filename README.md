@@ -90,6 +90,10 @@ The `tests/` directory is organized into the following topic folders:
    - `257_Webtable_forLoop_Pagination.spec.ts` – Pagination handling with `for` loop and collect emails across pages
    - `258_Webtable_pagination_function.spec.ts` – Reusable `findRowByName()` helper for paginated table search
 8. **08_Web_Select_Frames_Iframe** – Select elements and iframe basics
+   - `259_Web_Select.spec.ts` – Basic web select using `selectOption()`
+   - `260_Custom_Dropdown.spec.ts` – Custom dropdown interactions with `getByRole('option')`
+   - `261_Advance_Select_Pro.spec.ts` – Advanced select box variants (single, multi-chip, creatable, async searchable)
+   - `262_SpiceJet.spec.ts` – SpiceJet flight search with autocomplete location input
 9. **09_Frame_Iframe** – Deep dive into frames and iframes
 10. **10_Keyboard_Hover_Drag_Drop** – Keyboard actions, hover, drag & drop
 11. **11_JS_Alerts** – JavaScript alerts and dialogs
@@ -243,6 +247,10 @@ page.getByRole('button', { name: 'Hidden Button', includeHidden: true })
 │   │   ├── 257_Webtable_forLoop_Pagination.spec.ts
 │   │   └── 258_Webtable_pagination_function.spec.ts
 │   ├── 08_Web_Select_Frames_Iframe/      # Select & iframes
+│   │   ├── 259_Web_Select.spec.ts
+│   │   ├── 260_Custom_Dropdown.spec.ts
+│   │   ├── 261_Advance_Select_Pro.spec.ts
+│   │   └── 262_SpiceJet.spec.ts
 │   ├── 09_Frame_Iframe/                  # Frames & iframes
 │   ├── 10_Keyboard_Hover_Drag_Drop/      # Keyboard, hover, drag-drop
 │   ├── 11_JS_Alerts/                     # JS alerts

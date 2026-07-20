@@ -17,7 +17,7 @@ test('Verify webtable Element by using xpath preceding sibling', async ({ page }
     let Rows;
     while (true) {
         Rows = page.locator('#employees-tbody tr').filter({ hasText: name }); //try to find the row which has name declared in name veriable
-        if (await Rows.count()) { //if u found the value in first page or any page the break 
+        if (await Rows.count()) { //if u found the value in first page or any page it will break 
             break;
         }
 
