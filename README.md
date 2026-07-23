@@ -62,15 +62,16 @@ The `tests/` directory is organized into the following topic folders:
    - `236_BCP_TEST_Pw.spec.ts` – Multi-user interaction using the `browser` fixture
    - `237_BCP_TEST_Options.spec.ts` – Browser context with custom options (viewport, locale, timezone, geolocation)
 3. **03_Locators_Commands** – Locators and commands
-   - `238_Locator_commands.spec.ts` – Locator command basics
-   - `239_Project_VWO_login.spec.ts` – VWO login project using locators
-   - `240_xpaths.spec.ts` – XPath locator strategies
-   - `241_Project3_signup_Vwo.spec.ts` – VWO signup project
-   - `242_Project3_SignupVWO_PW_Locators.spec.ts` – VWO signup with Playwright locators
-   - `243_Playwright_Commands.spec.ts` – Common Playwright commands
-   - `244_Referrer.spec.ts` – Referrer header handling
-   - `245_getByRole.spec.ts` – `getByRole` locator usage
-   - `246_Press_Sequentially.spec.ts` – Sequential key press actions
+    - `238_Locator_commands.spec.ts` – Locator command basics
+    - `239_Project_VWO_login.spec.ts` – VWO login project using locators
+    - `240_xpaths.spec.ts` – XPath locator strategies
+    - `241_Project3_signup_Vwo.spec.ts` – VWO signup project
+    - `242_Project3_SignupVWO_PW_Locators.spec.ts` – VWO signup with Playwright locators
+    - `243_Playwright_Commands.spec.ts` – Common Playwright commands
+    - `244_Referrer.spec.ts` – Referrer header handling
+    - `245_getByRole.spec.ts` – `getByRole` locator usage
+    - `246_Press_Sequentially.spec.ts` – Sequential key press actions
+    - `263_Wingify_Negative_Login_Test.spec.ts` – Wingify login negative test cases (invalid credentials, empty fields)
 4. **04_Session_Storage** – Session and local storage handling
    - `247_SessionStorage.spec.ts` – Save and reuse session storage (serial tests: login → load dashboard)
    - `248_TestVWODashboard.spec.ts` – Direct dashboard/settings access using saved session (no login required). Uses `test.step()` for structured VWO steps visible in Allure and TTA reports
@@ -95,8 +96,18 @@ The `tests/` directory is organized into the following topic folders:
    - `261_Advance_Select_Pro.spec.ts` – Advanced select box variants (single, multi-chip, creatable, async searchable)
    - `262_SpiceJet.spec.ts` – SpiceJet flight search with autocomplete location input
 9. **09_Frame_Iframe** – Deep dive into frames and iframes
+    - `262_IFrame_Locator.spec.ts` – Interact with a single iframe using `frameLocator()` (form filling inside vehicle registration iframe)
+    - `263_Frameset_Main_Side_footer.spec.ts` – Handle multiple frames (main, side, footer) and iterate over all frames with `page.locator('//frame').all()`
+    - `264_Iframe_exampel2.spec.ts` – Nested iframe traversal (`iframe → iframe → iframe`) on selectorshub.com
 10. **10_Keyboard_Hover_Drag_Drop** – Keyboard actions, hover, drag & drop
+    - `265_Keyboard_key.spec.ts` – Keyboard key presses (`page.keyboard.press()`, `up()`, `down()`) on keycode.info
+    - `266_Hover_select.spec.ts` – Hover over menu items and click submenu options on spicejet.com
+    - `267_Hover_only_meal.spec.ts` – Hover on nav items, list all submenu elements, and click a specific option
+    - `268_Drag_drop.spec.ts` – Basic drag-and-drop between two columns on the-internet.herokuapp.com
+    - `269_Adcance_Drag_drop.spec.ts` – Advanced drag-and-drop with custom data-status attribute locators
+    - `270_Context_Menu_right_click.spec.ts` – Right-click context menu handling, reading all menu items, and selecting an option
 11. **11_JS_Alerts** – JavaScript alerts and dialogs
+    - `271_Js_Alerts.spec.ts` – Handle JS Alert, Confirm, and Prompt dialogs using `page.once('dialog')` with assertions on dialog type, message, and result text
 12. **12_Handle_SVG** – SVG element handling
 13. **13_Shadow_DOM** – Shadow DOM interactions
 14. **14_FileUpload** – File upload scenarios
@@ -220,16 +231,17 @@ page.getByRole('button', { name: 'Hidden Button', includeHidden: true })
 │   │   ├── 235_Test_PW.spec.ts
 │   │   ├── 236_BCP_TEST_Pw.spec.ts
 │   │   └── 237_BCP_TEST_Options.spec.ts
-│   ├── 03_Locators_Commands/             # Locators and commands
-│   │   ├── 238_Locator_commands.spec.ts
-│   │   ├── 239_Project_VWO_login.spec.ts
-│   │   ├── 240_xpaths.spec.ts
-│   │   ├── 241_Project3_signup_Vwo.spec.ts
-│   │   ├── 242_Project3_SignupVWO_PW_Locators.spec.ts
-│   │   ├── 243_Playwright_Commands.spec.ts
-│   │   ├── 244_Referrer.spec.ts
-│   │   ├── 245_getByRole.spec.ts
-│   │   └── 246_Press_Sequentially.spec.ts
+    │   ├── 03_Locators_Commands/             # Locators and commands
+    │   │   ├── 238_Locator_commands.spec.ts
+    │   │   ├── 239_Project_VWO_login.spec.ts
+    │   │   ├── 240_xpaths.spec.ts
+    │   │   ├── 241_Project3_signup_Vwo.spec.ts
+    │   │   ├── 242_Project3_SignupVWO_PW_Locators.spec.ts
+    │   │   ├── 243_Playwright_Commands.spec.ts
+    │   │   ├── 244_Referrer.spec.ts
+    │   │   ├── 245_getByRole.spec.ts
+    │   │   ├── 246_Press_Sequentially.spec.ts
+    │   │   └── 263_Wingify_Negative_Login_Test.spec.ts
 │   ├── 04_Session_Storage/               # Session storage
 │   │   ├── 247_SessionStorage.spec.ts
 │   │   └── 248_TestVWODashboard.spec.ts
@@ -251,9 +263,20 @@ page.getByRole('button', { name: 'Hidden Button', includeHidden: true })
 │   │   ├── 260_Custom_Dropdown.spec.ts
 │   │   ├── 261_Advance_Select_Pro.spec.ts
 │   │   └── 262_SpiceJet.spec.ts
-│   ├── 09_Frame_Iframe/                  # Frames & iframes
-│   ├── 10_Keyboard_Hover_Drag_Drop/      # Keyboard, hover, drag-drop
-│   ├── 11_JS_Alerts/                     # JS alerts
+    │   ├── 09_Frame_Iframe/                  # Frames & iframes
+    │   │   ├── 262_IFrame_Locator.spec.ts
+    │   │   ├── 263_Frameset_Main_Side_footer.spec.ts
+    │   │   └── 264_Iframe_exampel2.spec.ts
+    │   ├── 10_Keyboard_Hover_Drag_Drop/      # Keyboard, hover, drag-drop
+    │   │   ├── 265_Keyboard_key.spec.ts
+    │   │   ├── 266_Hover_select.spec.ts
+    │   │   ├── 267_Hover_only_meal.spec.ts
+    │   │   ├── 268_Drag_drop.spec.ts
+    │   │   ├── 269_Adcance_Drag_drop.spec.ts
+    │   │   ├── 270_Context_Menu_right_click.spec.ts
+    │   │   └── Learning.md
+    │   ├── 11_JS_Alerts/                     # JS alerts
+    │   │   └── 271_Js_Alerts.spec.ts
 │   ├── 12_Handle_SVG/                    # SVG handling
 │   ├── 13_Shadow_DOM/                    # Shadow DOM
 │   ├── 14_FileUpload/                    # File upload
