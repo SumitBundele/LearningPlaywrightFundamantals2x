@@ -106,6 +106,7 @@ The `tests/` directory is organized into the following topic folders:
     - `268_Drag_drop.spec.ts` – Basic drag-and-drop between two columns on the-internet.herokuapp.com
     - `269_Adcance_Drag_drop.spec.ts` – Advanced drag-and-drop with custom data-status attribute locators
     - `270_Context_Menu_right_click.spec.ts` – Right-click context menu handling, reading all menu items, and selecting an option
+    - `playwright.cli.Skill.md` – Playwright Agent CLI reference (commands, features, CLI vs MCP comparison)
 11. **11_JS_Alerts** – JavaScript alerts and dialogs
     - `271_Js_Alerts.spec.ts` – Handle JS Alert, Confirm, and Prompt dialogs using `page.once('dialog')` with assertions on dialog type, message, and result text
 12. **12_Handle_SVG** – SVG element handling
@@ -274,7 +275,8 @@ page.getByRole('button', { name: 'Hidden Button', includeHidden: true })
     │   │   ├── 268_Drag_drop.spec.ts
     │   │   ├── 269_Adcance_Drag_drop.spec.ts
     │   │   ├── 270_Context_Menu_right_click.spec.ts
-    │   │   └── Learning.md
+    │   │   ├── Learning.md
+    │   │   └── playwright.cli.Skill.md
     │   ├── 11_JS_Alerts/                     # JS alerts
     │   │   └── 271_Js_Alerts.spec.ts
 │   ├── 12_Handle_SVG/                    # SVG handling
