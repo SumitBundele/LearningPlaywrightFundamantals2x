@@ -9,7 +9,7 @@ test.describe('Flipkart Mac Mini Search - Titles & Cheapest Price', () => {
         await page.goto(URL);
     });
 
-    test("TC003 Search macmini, print all titles and find cheapest price", async ({ page }) => {
+    test("TC003 Search macmini, print first 40 titles and find cheapest price", async ({ page }) => {
         // Step 1: Enter search term
         await page.locator('input[name="q"]').fill("macmini");
         console.log("Search term 'macmini' entered.");
@@ -22,36 +22,38 @@ test.describe('Flipkart Mac Mini Search - Titles & Cheapest Price', () => {
         // Wait for search results to load
         await page.waitForLoadState('networkidle');
 
-        // Step 3: Extract all product titles
+        // Step 3: Extract first 40 product titles only
         // Flipkart titles are inside anchor tags within product grid items
         const titleLocator: Locator = page.locator('//a[contains(@href,"/p/itm") and not(contains(@href,"/search"))]');
         const titleCount: number = await titleLocator.count();
-        console.log(`\n========== TOTAL PRODUCTS FOUND: ${titleCount} ==========\n`);
+        const limit = Math.min(titleCount, 40);
+        console.log(`\n========== TOTAL PRODUCTS FOUND: ${titleCount} | PROCESSING FIRST 40 ONLY ==========\n`);
 
         const titles: string[] = [];
-        for (let i = 0; i < titleCount; i++) {
+        for (let i = 0; i < limit; i++) {
             const titleText: string | null = await titleLocator.nth(i).textContent();
             if (titleText && titleText.trim().length > 0) {
                 titles.push(titleText.trim());
             }
         }
 
-        // Print all titles
-        console.log("========== ALL PRODUCT TITLES ==========");
+        // Print first 40 titles
+        console.log("========== FIRST 40 PRODUCT TITLES ==========");
         titles.forEach((title, index) => {
             console.log(`${index + 1}. ${title}`);
         });
 
-        // Step 4: Extract all prices and find the cheapest
+        // Step 4: Extract prices for first 40 results and find the cheapest
         // Price links on Flipkart contain the ₹ symbol
         const priceLocator: Locator = page.locator('a:has-text("₹")');
         const priceCount: number = await priceLocator.count();
+        const priceLimit = Math.min(priceCount, 40);
 
         let cheapestPrice: number = Infinity;
         let cheapestProductTitle: string = "N/A";
         const priceList: { title: string; price: number; rawText: string }[] = [];
 
-        for (let i = 0; i < priceCount; i++) {
+        for (let i = 0; i < priceLimit; i++) {
             const priceElement = priceLocator.nth(i);
             const priceText: string | null = await priceElement.textContent();
 
@@ -96,14 +98,14 @@ test.describe('Flipkart Mac Mini Search - Titles & Cheapest Price', () => {
             }
         }
 
-        // Print all prices found
-        console.log("\n========== ALL PRICES FOUND ==========");
+        // Print first 40 prices found
+        console.log("\n========== FIRST 40 PRICES FOUND ==========");
         priceList.forEach((item, index) => {
             console.log(`${index + 1}. ${item.title.substring(0, 60)}... -> ₹${item.price.toLocaleString('en-IN')} (raw: ${item.rawText})`);
         });
 
-        // Print cheapest product
-        console.log("\n========== CHEAPEST MAC MINI ==========");
+        // Print cheapest product among first 40
+        console.log("\n========== CHEAPEST MAC MINI (AMONG FIRST 40) ==========");
         if (cheapestPrice !== Infinity) {
             console.log(`Title: ${cheapestProductTitle}`);
             console.log(`Price: ₹${cheapestPrice.toLocaleString('en-IN')}`);
