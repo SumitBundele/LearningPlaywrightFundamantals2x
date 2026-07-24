@@ -43,15 +43,13 @@ test.describe('Flipkart Mac Mini Search - Titles & Cheapest Price', () => {
             console.log(`${index + 1}. ${title}`);
         });
 
-        // Step 4: Extract prices for first 40 results and find the cheapest
+        // Step 4: Extract prices for first 40 results using SORTING mechanism
         // Price links on Flipkart contain the ₹ symbol
         const priceLocator: Locator = page.locator('a:has-text("₹")');
         const priceCount: number = await priceLocator.count();
         const priceLimit = Math.min(priceCount, 40);
 
-        let cheapestPrice: number = Infinity;
-        let cheapestProductTitle: string = "N/A";
-        const priceList: { title: string; price: number; rawText: string }[] = [];
+        const productList: { title: string; price: number; rawText: string }[] = [];
 
         for (let i = 0; i < priceLimit; i++) {
             const priceElement = priceLocator.nth(i);
@@ -83,39 +81,40 @@ test.describe('Flipkart Mac Mini Search - Titles & Cheapest Price', () => {
                             }
                         }
 
-                        priceList.push({
+                        productList.push({
                             title: productTitle,
                             price: numericPrice,
                             rawText: priceText.trim()
                         });
-
-                        if (numericPrice < cheapestPrice) {
-                            cheapestPrice = numericPrice;
-                            cheapestProductTitle = productTitle;
-                        }
                     }
                 }
             }
         }
 
-        // Print first 40 prices found
-        console.log("\n========== FIRST 40 PRICES FOUND ==========");
-        priceList.forEach((item, index) => {
-            console.log(`${index + 1}. ${item.title.substring(0, 60)}... -> ₹${item.price.toLocaleString('en-IN')} (raw: ${item.rawText})`);
+        // SORTING MECHANISM: Sort products by price in ASCENDING order (Lowest to Highest)
+        const sortedProducts = productList.sort((a, b) => a.price - b.price);
+
+        // Print all products sorted by price (Lowest to Highest)
+        console.log("\n========== PRODUCTS SORTED BY PRICE (Lowest to Highest) ==========");
+        sortedProducts.forEach((item, index) => {
+            console.log(`${index + 1}. ${item.title.substring(0, 60)}... -> ₹${item.price.toLocaleString('en-IN')}`);
         });
 
-        // Print cheapest product among first 40
-        console.log("\n========== CHEAPEST MAC MINI (AMONG FIRST 40) ==========");
-        if (cheapestPrice !== Infinity) {
-            console.log(`Title: ${cheapestProductTitle}`);
-            console.log(`Price: ₹${cheapestPrice.toLocaleString('en-IN')}`);
+        // The LOWEST price is now the FIRST element after sorting
+        console.log("\n========== LOWEST PRICE MAC MINI ==========");
+        if (sortedProducts.length > 0) {
+            const cheapest = sortedProducts[0];
+            console.log(`🏆 WINNER:`);
+            console.log(`Title: ${cheapest.title}`);
+            console.log(`Price: ₹${cheapest.price.toLocaleString('en-IN')}`);
+            console.log(`Raw Price Text: ${cheapest.rawText}`);
         } else {
             console.log("No valid prices found on the page.");
         }
 
         // Optional: Assert that we found at least one product
         expect(titles.length).toBeGreaterThan(0);
-        expect(priceList.length).toBeGreaterThan(0);
+        expect(sortedProducts.length).toBeGreaterThan(0);
     });
 
 });
