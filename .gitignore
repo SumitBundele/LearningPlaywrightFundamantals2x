@@ -28,3 +28,14 @@ tta-report/
 *-session.json
 *-state.json
 auth.json
+
+# OpenCode config
+.opencode/
+
+# Playwright MCP config
+.playwright-mcp/
+
+# Test artifacts
+*.png
+*.yml
+*.yaml
