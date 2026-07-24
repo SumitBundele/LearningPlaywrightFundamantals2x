@@ -112,7 +112,7 @@ The `tests/` directory is organized into the following topic folders:
 12. **12_Handle_SVG** – SVG element handling
     - `272_SVG_ex.spec.ts` – Flipkart search test with SVG elements using `@smoke` and `@Regression` tags, `test.describe()` with `beforeEach` hook
     - `272_SVG_ex02.spec.ts` – Search for products, click SVG search icon, extract results using dynamic XPath, and iterate titles with `page.locator().allInnerTexts()`
-    - `273_Flipkart_svg_practice.spec.ts` – Search for "macmini" on Flipkart, click SVG search button, print first 40 product titles only, extract first 40 prices, and find the cheapest Mac Mini among first 40 results with price comparison logic
+    - `273_Flipkart_svg_practice.spec.ts` – Search for "macmini" on Flipkart, click SVG search button, print first 40 product titles only, extract first 40 prices, sort products by price using ascending `Array.sort()`, and find the lowest (cheapest) Mac Mini among first 40 results
 13. **13_Shadow_DOM** – Shadow DOM interactions
 14. **14_FileUpload** – File upload scenarios
 15. **15_File_Download** – File download scenarios
