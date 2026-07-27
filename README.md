@@ -125,6 +125,8 @@ The `tests/` directory is organized into the following topic folders:
     - `272_SVG_ex.spec.ts` – Flipkart search test with SVG elements using `@smoke` and `@Regression` tags, `test.describe()` with `beforeEach` hook
     - `272_SVG_ex02.spec.ts` – Search for products, click SVG search icon, extract results using dynamic XPath, and iterate titles with `page.locator().allInnerTexts()`
     - `273_Flipkart_svg_practice.spec.ts` – Search for "macmini" on Flipkart, click SVG search button, print first 40 product titles only, extract first 40 prices, sort products by price using ascending `Array.sort()`, and find the lowest (cheapest) Mac Mini among first 40 results
+    - `274_SVG_Practice.spec.ts` – SVG circle click (`#circle-blue`), bar chart interaction with `data-quarter` attribute extraction, radio button selection
+    - `275_Advance_svg.spec.ts` – India map SVG state locator using SVG path elements, class filtering (`sm_state`), and clicking specific state (UP) by class attribute
 13. **13_Shadow_DOM** – Shadow DOM interactions
     - `276_Shadow_dom.spec.ts` – Locate shadow DOM elements and interact with nested components (account card, counter cart, email/password form inside nested host)
 14. **14_FileUpload** – File upload scenarios
@@ -332,7 +334,9 @@ page.getByRole('button', { name: 'Hidden Button', includeHidden: true })
 │   ├── 12_Handle_SVG/                    # SVG handling
 │   │   ├── 272_SVG_ex.spec.ts
 │   │   ├── 272_SVG_ex02.spec.ts
-│   │   └── 273_Flipkart_svg_practice.spec.ts
+│   │   ├── 273_Flipkart_svg_practice.spec.ts
+│   │   ├── 274_SVG_Practice.spec.ts
+│   │   └── 275_Advance_svg.spec.ts
 │   ├── 13_Shadow_DOM/                    # Shadow DOM
 │   │   └── 276_Shadow_dom.spec.ts
 │   ├── 14_FileUpload/                    # File upload
