@@ -21,6 +21,18 @@ This project demonstrates the core concepts of Playwright, including:
 npm install
 ```
 
+### TypeScript Support
+
+This project includes TypeScript configuration (`tsconfig.json`) with:
+- `@types/node` for Node.js built-in modules (e.g., `path`)
+- Playwright type definitions
+- Strict type checking enabled
+
+> **Note:** Install `@types/node` if working with Node.js modules like `path`, `fs`, etc.
+> ```bash
+> npm install --save-dev @types/node
+> ```
+
 ## Running Tests
 
 ```bash
@@ -114,7 +126,10 @@ The `tests/` directory is organized into the following topic folders:
     - `272_SVG_ex02.spec.ts` – Search for products, click SVG search icon, extract results using dynamic XPath, and iterate titles with `page.locator().allInnerTexts()`
     - `273_Flipkart_svg_practice.spec.ts` – Search for "macmini" on Flipkart, click SVG search button, print first 40 product titles only, extract first 40 prices, sort products by price using ascending `Array.sort()`, and find the lowest (cheapest) Mac Mini among first 40 results
 13. **13_Shadow_DOM** – Shadow DOM interactions
+    - `276_Shadow_dom.spec.ts` – Locate shadow DOM elements and interact with nested components (account card, counter cart, email/password form inside nested host)
 14. **14_FileUpload** – File upload scenarios
+    - `277_File_Upload.spec.ts` – Single file upload using `path` module to construct absolute file paths
+    - `278_multiple_fileUpload.spec.ts` – Multiple file upload using array of file paths with `setInputFiles([file1, file2])`
 15. **15_File_Download** – File download scenarios
 16. **16_Scroll_toElement** – Scrolling to elements
 17. **17_Expect_Assertions** – Expect assertions
@@ -163,6 +178,38 @@ await page.goto('https://example.com/login', {
   referer: 'https://example.com'
 });
 ```
+
+### File Upload (`locator.setInputFiles()`)
+
+Uploads files to a file input element. The input element must be an `<input type="file">`.
+
+| Argument | Type | Description | Example |
+|---|---|---|---|
+| **files** | `string`, `string[]`, or `FilePayload[]` | File path(s) or file payload(s) to upload | `await page.locator('input[type="file"]').setInputFiles(filePath)` |
+
+#### Single File Upload
+
+```typescript
+import path from 'path';
+
+const filePath = path.join(__dirname, 'testdata.jpg');
+await page.locator('input#file-upload').setInputFiles(filePath);
+```
+
+#### Multiple File Upload
+
+```typescript
+const file1 = path.join(__dirname, 'file1.jpg');
+const file2 = path.join(__dirname, 'file2.jpg');
+
+// Enable multiple attribute if not present
+await page.locator('input#file-upload').evaluate((el) => el.setAttribute('multiple', ''));
+
+// Upload multiple files
+await page.locator('input#file-upload').setInputFiles([file1, file2]);
+```
+
+> **Tip:** Use `path.join(__dirname, 'filename')` to construct absolute paths relative to the test file location.
 
 ### `page.getByRole()`
 
@@ -287,7 +334,13 @@ page.getByRole('button', { name: 'Hidden Button', includeHidden: true })
 │   │   ├── 272_SVG_ex02.spec.ts
 │   │   └── 273_Flipkart_svg_practice.spec.ts
 │   ├── 13_Shadow_DOM/                    # Shadow DOM
+│   │   └── 276_Shadow_dom.spec.ts
 │   ├── 14_FileUpload/                    # File upload
+│   │   ├── 277_File_Upload.spec.ts
+│   │   ├── 278_multiple_fileUpload.spec.ts
+│   │   ├── file1.jpg
+│   │   ├── file2.jpg
+│   │   └── testdata.jpg
 │   ├── 15_File_Download/                 # File download
 │   ├── 16_Scroll_toElement/             # Scroll to element
 │   ├── 17_Expect_Assertions/             # Expect assertions
