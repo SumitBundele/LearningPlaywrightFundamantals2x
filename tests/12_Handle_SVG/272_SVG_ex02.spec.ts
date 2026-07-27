@@ -25,10 +25,23 @@ test.describe('Flipkart Search via SVG', () => { //describr yout test suit
             const title: string | null = await titleResults.nth(i).textContent();
             console.log(title);
         }
-        await page.pause
+        await page.pause();
 
     });
 
+    //     Navigate to the https://www.flipkart.com/search
+
+
+
+    // Search for the “macmini”
+
+
+
+    // Print the titles of all the results.
+
+
+
+    // Find the cheapest price mac mini and print it. (on first page)
 
 
 })
