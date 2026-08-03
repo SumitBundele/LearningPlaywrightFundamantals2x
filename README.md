@@ -133,7 +133,9 @@ The `tests/` directory is organized into the following topic folders:
     - `277_File_Upload.spec.ts` – Single file upload using `path` module to construct absolute file paths
     - `278_multiple_fileUpload.spec.ts` – Multiple file upload using array of file paths with `setInputFiles([file1, file2])`
 15. **15_File_Download** – File download scenarios
+    - `277_File_Download.spec.ts` – Capture file download event with `page.waitForEvent('download')`, save downloaded file using `download.saveAs()`
 16. **16_Scroll_toElement** – Scrolling to elements
+    - `278_ScrollTo_View.spec.ts` – Scroll into view with `scrollIntoViewIfNeeded()`, window scroll via `page.evaluate()`, lazy-loading list polling with `expect.poll()`, and counting dynamically loaded `<li>` elements
 17. **17_Expect_Assertions** – Expect assertions
 18. **18_Test_hooks** – Test hooks (before/after)
 19. **19_Data_Driven_Testing** – Data-driven testing patterns
@@ -346,7 +348,9 @@ page.getByRole('button', { name: 'Hidden Button', includeHidden: true })
 │   │   ├── file2.jpg
 │   │   └── testdata.jpg
 │   ├── 15_File_Download/                 # File download
+│   │   └── 277_File_Download.spec.ts
 │   ├── 16_Scroll_toElement/             # Scroll to element
+│   │   └── 278_ScrollTo_View.spec.ts
 │   ├── 17_Expect_Assertions/             # Expect assertions
 │   ├── 18_Test_hooks/                    # Test hooks
 │   ├── 19_Data_Driven_Testing/           # Data-driven testing
