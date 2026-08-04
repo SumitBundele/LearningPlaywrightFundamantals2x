@@ -137,13 +137,28 @@ The `tests/` directory is organized into the following topic folders:
 16. **16_Scroll_toElement** – Scrolling to elements
     - `278_ScrollTo_View.spec.ts` – Scroll into view with `scrollIntoViewIfNeeded()`, window scroll via `page.evaluate()`, lazy-loading list polling with `expect.poll()`, and counting dynamically loaded `<li>` elements
 17. **17_Expect_Assertions** – Expect assertions
+    - `279_Expect.spec.ts` – Basic expect assertions
+    - `280_Expect02.spec.ts` – Additional expect assertion patterns
+    - `281_Expect_Soft_Assetion.spec.ts` – Soft assertions (continue on failure)
+    - `282_Project.spec.ts` – Assertion project examples
+    - `283_Expect_Cheatsheet.md` – Expect assertions cheatsheet reference
 18. **18_Test_hooks** – Test hooks (before/after)
+    - `284_Test_hooks.spec.ts` – Test hooks basics
+    - `285_test_hook_Function.md` – Test hook functions reference documentation
+    - `286_Grouping_Test_Case.spec.ts` – Grouping test cases with `test.step()` for structured test reporting
+    - `287_Before_After.spec.ts` – Before/after hooks usage
+    - `288_Test_Describe_seriel.spec.ts` – Serial test execution with `test.describe.serial()`
+    - `289_Test_Priority.spec.ts` – Test priority and ordering patterns
 19. **19_Data_Driven_Testing** – Data-driven testing patterns
 20. **20_Page_Object_Model** – Page Object Model (POM)
 21. **21_Fixture** – Playwright fixtures
 22. **22_Misc_Concepts** – Miscellaneous concepts
 23. **23_Advance_Framework** – Advanced framework topics
 24. **Projects** – Practice projects
+
+### Playwright Test Functions Reference
+
+- `17_/test_Case_Function.md` – Complete reference of all Playwright test functions (`test.only`, `test.skip`, `test.fixme`, `test.step`, `test.describe`, `test.beforeAll`, `test.afterAll`, etc.) in tabular format with usage examples
 
 ## Key API Reference
 
@@ -274,6 +289,8 @@ page.getByRole('button', { name: 'Hidden Button', includeHidden: true })
 
 ```
 .
+├── 17_/                                  # Playwright test functions reference
+│   └── test_Case_Function.md             # All test functions in tabular format
 ├── tests/
 │   ├── 01_Basics/                        # Playwright basics
 │   │   ├── 229_Basic_Test.spec.ts
@@ -352,7 +369,18 @@ page.getByRole('button', { name: 'Hidden Button', includeHidden: true })
 │   ├── 16_Scroll_toElement/             # Scroll to element
 │   │   └── 278_ScrollTo_View.spec.ts
 │   ├── 17_Expect_Assertions/             # Expect assertions
+│   │   ├── 279_Expect.spec.ts
+│   │   ├── 280_Expect02.spec.ts
+│   │   ├── 281_Expect_Soft_Assetion.spec.ts
+│   │   ├── 282_Project.spec.ts
+│   │   └── 283_Expect_Cheatsheet.md
 │   ├── 18_Test_hooks/                    # Test hooks
+│   │   ├── 284_Test_hooks.spec.ts
+│   │   ├── 285_test_hook_Function.md
+│   │   ├── 286_Grouping_Test_Case.spec.ts
+│   │   ├── 287_Before_After.spec.ts
+│   │   ├── 288_Test_Describe_seriel.spec.ts
+│   │   └── 289_Test_Priority.spec.ts
 │   ├── 19_Data_Driven_Testing/           # Data-driven testing
 │   ├── 20_Page_Object_Model/             # Page Object Model
 │   ├── 21_Fixture/                       # Fixtures
