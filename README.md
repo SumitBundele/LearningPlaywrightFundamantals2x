@@ -150,6 +150,17 @@ The `tests/` directory is organized into the following topic folders:
     - `288_Test_Describe_seriel.spec.ts` – Serial test execution with `test.describe.serial()`
     - `289_Test_Priority.spec.ts` – Test priority and ordering patterns
 19. **19_Data_Driven_Testing** – Data-driven testing patterns
+    - `291_User_Data_call_json.spec.ts` – Read and verify user data from a JSON file
+    - `293_Login_Test.spec.ts` – Login tests using JSON test data (valid/invalid users)
+    - `294_Read_Write_fileSystem.ts` – File system read/write operations
+    - `295_Data_Drive_Test_Json_Arry.spec.ts` – DDT with a JSON array of login scenarios
+    - `296_Data_Driven_Test_CSV.spec.ts` – DDT with CSV file data (`test-data/login-data.csv`) via custom `csvReader.ts`
+    - `297_JSON_DDT.spec.ts` – DDT with JSON file data (`test-data/registration-data.json`)
+    - `299_MySQL_DDT.spec.ts` – DDT fetching data from MySQL (with `mysql2`) and fallback mock data via `mysqlReader.ts`
+    - `300_XLSX_DDT.spec.ts` – DDT with Excel file data (`test-data/login-data.xlsx`) via custom `xlsxReader.ts`
+    - `301_YAML_DDT.spec.ts` – DDT with YAML file data (`test-data/login-data.yml`) via custom `yamlReader.ts`
+    - `test-data/` – Sample data files: `290_User.json`, `292_Test_Data.json`, `registration-data.json`, `login-data.csv`, `login-data.xlsx`, `login-data.yml`
+    - `util/` – Reusable data reader helpers: `csvReader.ts`, `mysqlReader.ts`, `xlsxReader.ts`, `yamlReader.ts`
 20. **20_Page_Object_Model** – Page Object Model (POM)
 21. **21_Fixture** – Playwright fixtures
 22. **22_Misc_Concepts** – Miscellaneous concepts
@@ -382,6 +393,27 @@ page.getByRole('button', { name: 'Hidden Button', includeHidden: true })
 │   │   ├── 288_Test_Describe_seriel.spec.ts
 │   │   └── 289_Test_Priority.spec.ts
 │   ├── 19_Data_Driven_Testing/           # Data-driven testing
+│   │   ├── 291_User_Data_call_json.spec.ts
+│   │   ├── 293_Login_Test.spec.ts
+│   │   ├── 294_Read_Write_fileSystem.ts
+│   │   ├── 295_Data_Drive_Test_Json_Arry.spec.ts
+│   │   ├── 296_Data_Driven_Test_CSV.spec.ts
+│   │   ├── 297_JSON_DDT.spec.ts
+│   │   ├── 299_MySQL_DDT.spec.ts
+│   │   ├── 300_XLSX_DDT.spec.ts
+│   │   ├── 301_YAML_DDT.spec.ts
+│   │   ├── test-data/
+│   │   │   ├── 290_User.json
+│   │   │   ├── 292_Test_Data.json
+│   │   │   ├── login-data.csv
+│   │   │   ├── login-data.xlsx
+│   │   │   ├── login-data.yml
+│   │   │   └── registration-data.json
+│   │   └── util/
+│   │       ├── csvReader.ts
+│   │       ├── mysqlReader.ts
+│   │       ├── xlsxReader.ts
+│   │       └── yamlReader.ts
 │   ├── 20_Page_Object_Model/             # Page Object Model
 │   ├── 21_Fixture/                       # Fixtures
 │   ├── 22_Misc_Concepts/                 # Misc concepts
